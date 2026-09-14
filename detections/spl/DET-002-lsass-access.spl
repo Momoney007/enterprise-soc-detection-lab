@@ -1,0 +1,2 @@
+index=sysmon EventCode=10 TargetImage="*\\lsass.exe"
+| table _time host user SourceImage TargetImage GrantedAccess CallTrace

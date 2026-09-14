@@ -1,0 +1,24 @@
+title: Scheduled Task Created or Modified
+id: 0f26be57-c476-4102-93b4-314c174a8f61
+status: experimental
+description: Detects scheduled task creation or modification, which may be used for persistence or execution.
+references:
+  - https://attack.mitre.org/techniques/T1053/005/
+author: Momin Abbas
+date: 2026/09/12
+tags:
+  - attack.persistence
+  - attack.t1053.005
+logsource:
+  product: windows
+  service: security
+detection:
+  selection:
+    EventID:
+      - 4698
+      - 4702
+  condition: selection
+falsepositives:
+  - Legitimate software installers, updaters, and system-management tools.
+  - Administrator-created maintenance tasks.
+level: medium

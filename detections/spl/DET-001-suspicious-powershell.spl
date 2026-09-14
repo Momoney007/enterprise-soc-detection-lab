@@ -1,0 +1,2 @@
+index=pwsh EventCode=4104
+| search ScriptBlockText="*-EncodedCommand*" OR ScriptBlockText="* -enc *" OR ScriptBlockText="*Invoke-Expression*"

@@ -1,0 +1,6 @@
+timestamp_utc,technique_id,test_number,host,user,description,expected_artifact,observed_event_ids,detection_fired,cleanup_complete
+2026-09-12T18:46:52Z,T1059.001,17,WS01,NORTHGATE\Administrator,Atomic PowerShell command execution test,PowerShell script block logging and Sysmon process telemetry,PowerShell EventCode 4104 and Sysmon EventCode 1 observed,Yes,Yes
+2026-09-12T18:56:15Z,T1003.001,1,WS01,NORTHGATE\Administrator,Atomic ProcDump LSASS memory dump test,LSASS/procdump process and file telemetry,Sysmon ProcDump telemetry observed; Defender blocked completion with Access Denied,Partial,Yes
+2026-09-12T19:12:10Z,T1558.003,1,WS01,NORTHGATE\Administrator,Kerberoasting service ticket request simulation,Kerberos service-ticket event on DC01,Windows Security EventCode 4769 observed on DC01,Yes,Yes
+2026-09-12T19:15:26Z,T1053.005,1,WS01,NORTHGATE\Administrator,Scheduled task persistence simulation,Scheduled task creation and process telemetry,Sysmon scheduled-task/powershell telemetry observed,Yes,Yes
+2026-09-13T21:07:36Z,T1070.001,manual,WS01,NORTHGATE\Administrator,Security log clearing simulation using wevtutil because Atomic T1070.001 was not present,Audit log cleared event and wevtutil process telemetry,Windows Security EventCode 1102 observed and Sysmon wevtutil telemetry observed,Yes,Not applicable

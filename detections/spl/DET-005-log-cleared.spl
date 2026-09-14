@@ -1,0 +1,2 @@
+index=win EventCode=1102
+| table _time host user SubjectUserName EventCode

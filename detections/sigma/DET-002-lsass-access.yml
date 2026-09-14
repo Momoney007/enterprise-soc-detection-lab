@@ -1,0 +1,23 @@
+title: Suspicious Process Access to LSASS
+id: 95f8eb6a-cf47-4e0a-972c-a0cf132328b8
+status: experimental
+description: Detects process access to lsass.exe that may indicate credential dumping behavior.
+references:
+  - https://attack.mitre.org/techniques/T1003/001/
+author: Momin Abbas
+date: 2026/09/12
+tags:
+  - attack.credential_access
+  - attack.t1003.001
+logsource:
+  product: windows
+  category: process_access
+  definition: Requires Sysmon Event ID 10 or an equivalent process-access source.
+detection:
+  selection:
+    TargetImage|endswith: '\lsass.exe'
+  condition: selection
+falsepositives:
+  - Security products and administrative tools that legitimately inspect LSASS.
+  - Windows components with legitimate process-access behavior.
+level: high

@@ -1,0 +1,28 @@
+title: Suspicious Encoded PowerShell Execution
+id: 2c9d2b30-5f6b-4ab5-8b66-67392afcd901
+status: experimental
+description: Detects PowerShell execution using encoded-command or common expression-evaluation patterns associated with script-based execution.
+references:
+  - https://attack.mitre.org/techniques/T1059/001/
+author: Momin Abbas
+date: 2026/09/12
+tags:
+  - attack.execution
+  - attack.t1059.001
+logsource:
+  product: windows
+  service: powershell
+  definition: Requires PowerShell Script Block Logging.
+detection:
+  selection_encoded:
+    ScriptBlockText|contains:
+      - '-EncodedCommand'
+      - ' -enc '
+  selection_expression:
+    ScriptBlockText|contains:
+      - 'Invoke-Expression'
+  condition: 1 of selection_*
+falsepositives:
+  - Administrative automation or software-management tooling using encoded PowerShell.
+  - Legitimate scripts using Invoke-Expression.
+level: medium

@@ -1,0 +1,21 @@
+title: Windows Security Audit Log Cleared
+id: 037684c0-63b0-42d4-9c4b-77950ea8ee64
+status: experimental
+description: Detects clearing of the Windows Security audit log.
+references:
+  - https://attack.mitre.org/techniques/T1070/001/
+author: Momin Abbas
+date: 2026/09/12
+tags:
+  - attack.defense_evasion
+  - attack.t1070.001
+logsource:
+  product: windows
+  service: security
+detection:
+  selection:
+    EventID: 1102
+  condition: selection
+falsepositives:
+  - Authorized maintenance or troubleshooting that intentionally clears logs.
+level: high

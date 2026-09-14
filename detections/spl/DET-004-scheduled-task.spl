@@ -1,0 +1,2 @@
+index=win (EventCode=4698 OR EventCode=4702)
+| table _time host user EventCode TaskName SubjectUserName

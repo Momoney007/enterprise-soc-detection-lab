@@ -1,0 +1,70 @@
+<dashboard version="1.1" theme="dark">
+  <label>Enterprise SOC Detection Lab</label>
+  <row>
+    <panel>
+      <title>Events by Host</title>
+      <table>
+        <search>
+          <query>(index=win OR index=sysmon OR index=pwsh)
+| stats count by host</query>
+        </search>
+        <option name="drilldown">none</option>
+      </table>
+    </panel>
+    <panel>
+      <title>Events by Index</title>
+      <table>
+        <search>
+          <query>(index=win OR index=sysmon OR index=pwsh)
+| stats count by index</query>
+        </search>
+        <option name="drilldown">none</option>
+      </table>
+    </panel>
+  </row>
+  <row>
+    <panel>
+      <title>PowerShell 4104 Events by Host</title>
+      <table>
+        <search>
+          <query>index=pwsh EventCode=4104 earliest=-48h
+| stats count by host</query>
+        </search>
+        <option name="drilldown">none</option>
+      </table>
+    </panel>
+    <panel>
+      <title>Sysmon Process Creation by Image</title>
+      <table>
+        <search>
+          <query>index=sysmon EventCode=1 earliest=-24h
+| eval process=coalesce(Image, ProcessName, process_name, CommandLine)
+| stats count by process</query>
+        </search>
+        <option name="count">10</option>
+        <option name="drilldown">none</option>
+      </table>
+    </panel>
+  </row>
+  <row>
+    <panel>
+      <title>Kerberos 4769 Activity</title>
+      <table>
+        <search>
+          <query>index=win EventCode=4769 earliest=-24h
+| stats count by host</query>
+        </search>
+        <option name="drilldown">none</option>
+      </table>
+    </panel>
+    <panel>
+      <title>Recent High-Signal Detection Evidence</title>
+      <event>
+        <search>
+          <query>(index=win EventCode=1102) OR (index=sysmon (procdump OR wevtutil OR schtasks)) OR (index=pwsh EventCode=4104)</query>
+        </search>
+        <option name="count">5</option>
+      </event>
+    </panel>
+  </row>
+</dashboard>

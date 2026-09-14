@@ -1,0 +1,2 @@
+index=win host=DC01 EventCode=4769
+| stats count by _time Account_Name Service_Name Ticket_Encryption_Type Client_Address

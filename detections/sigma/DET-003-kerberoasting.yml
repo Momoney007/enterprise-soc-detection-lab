@@ -1,0 +1,23 @@
+title: Kerberos Service Ticket Activity Consistent With Kerberoasting
+id: 4da56597-85c0-4f0c-b39b-8030827ad1c2
+status: experimental
+description: Detects Kerberos service-ticket activity that may be associated with Kerberoasting against service accounts.
+references:
+  - https://attack.mitre.org/techniques/T1558/003/
+author: Momin Abbas
+date: 2026/09/12
+tags:
+  - attack.credential_access
+  - attack.t1558.003
+logsource:
+  product: windows
+  service: security
+  definition: Requires Kerberos Service Ticket Operations auditing.
+detection:
+  selection:
+    EventID: 4769
+  condition: selection
+falsepositives:
+  - Normal access to Kerberos-authenticated services.
+  - Service discovery or application behavior that requests legitimate service tickets.
+level: medium
